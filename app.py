@@ -140,9 +140,6 @@ elif modo == "Câmera ao Vivo (Beta)":
         key="pose-live",
         video_processor_factory=PoseProcessor,
         # Formato minimalista para evitar erro de parsing no mobile
-        rtc_configuration={
-            "iceServers": [{"urls": ["stun:://google.com"]}]
-        },
         media_stream_constraints={
             "video": {"width": {"ideal": 480}, "frameRate": {"ideal": 15}},
             "audio": False
