@@ -139,7 +139,14 @@ elif modo == "Câmera ao Vivo (Beta)":
     webrtc_streamer(
         key="pose-live",
         video_processor_factory=PoseProcessor,
-        media_stream_constraints={"video": True, "audio": False},
+        # Formato minimalista para evitar erro de parsing no mobile
+        rtc_configuration={
+            "iceServers": [{"urls": ["stun:://google.com"]}]
+        },
+        media_stream_constraints={
+            "video": {"width": {"ideal": 480}, "frameRate": {"ideal": 15}},
+            "audio": False
+        },
         async_processing=True,
     )
 
