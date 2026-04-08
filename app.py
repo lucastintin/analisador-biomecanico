@@ -31,7 +31,7 @@ GRUPOS_VISAO = {
     "Visão Frontal - Superiores": {
         "articulacoes": [
             {"pontos": [13, 11, 23], "label": "Axila Esq.", "cor": (255, 255, 255)},
-            {"pontos": [14, 12, 24], "label": "Axila Dir.", "cor": (255, 255, 255)}
+            {"pontos": [14, 12, 11], "label": "Axila Dir.", "cor": (255, 255, 255)}
         ],
         "descricao": "Análise de simetria e abertura de braços."
     }
