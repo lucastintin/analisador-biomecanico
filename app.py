@@ -15,7 +15,7 @@ pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
 GRUPOS_VISAO = {
     "Visão Frontal - Superiores": {
         "articulacoes": [
-            {"pontos": [13, 11, 12], "label": "Axila Esq.", "cor": (255, 255, 255)},
+            {"pontos": [13, 11, 23], "label": "Axila Esq.", "cor": (255, 255, 255)},
             {"pontos": [14, 12, 11], "label": "Axila Dir.", "cor": (255, 255, 255)}
         ],
         "descricao": "Análise de simetria e abertura de braços."
@@ -43,6 +43,7 @@ GRUPOS_VISAO = {
 }
 
 # --- FUNÇÃO MATEMÁTICA ---
+### DEPRECATED ###
 def calcular_angulo(a, b, c):
     a, b, c = np.array(a), np.array(b), np.array(c)
     radianos = np.arctan2(c[1]-b[1], c[0]-b[0]) - np.arctan2(a[1]-b[1], a[0]-b[0])
@@ -146,9 +147,9 @@ if uploaded_file is not None:
             cv2.putText(annotated_img, f"{valor_angulo}deg", (pos_texto[0]+5, pos_texto[1]-10), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2, cv2.LINE_AA)
 
-            # 5. Exibir Resultado
-            img_rgb = cv2.cvtColor(annotated_img, cv2.COLOR_BGR2RGB)
-            st.image(img_rgb, use_container_width=True)
+        # 5. Exibir Resultado
+        img_rgb = cv2.cvtColor(annotated_img, cv2.COLOR_BGR2RGB)
+        st.image(img_rgb, use_container_width=True)
         
         # 6. Preparar Download
         result_img_pil = Image.fromarray(img_rgb)
