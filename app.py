@@ -95,7 +95,11 @@ if modo == "Análise de Foto":
     escolha = st.sidebar.selectbox("Visão da Análise:", list(GRUPOS_VISAO.keys()))
     st.info(f"**Dica:** {GRUPOS_VISAO[escolha]['descricao']}")
 
-    uploaded_file = st.file_uploader("Escolha uma foto...", type=["jpg", "jpeg", "png"])
+    foto_capturada = st.camera_input("Bater foto agora")
+    arquivo_carregado = st.file_uploader("Ou selecione um arquivo da galeria", type=["jpg", "jpeg", "png", "webp"])
+
+    # Define qual imagem processar (prioridade para a captura da câmera)
+    uploaded_file = foto_capturada if foto_capturada else arquivo_carregado
 
     if uploaded_file:
         image = Image.open(uploaded_file)
