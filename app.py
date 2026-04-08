@@ -56,15 +56,16 @@ def desenhar_angulo(img, p1, p2, p3, cor):
 # --- CLASSE PARA PROCESSAMENTO LIVE ---
 class PoseProcessor(VideoProcessorBase):
     def __init__(self) -> None:
-        self.pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+        self.pose = mp_pose.Pose(static_image_mode=False, model_complexity=0, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
         if img is None: return frame
         
         h, w, _ = img.shape
+        img_small = cv2.resize(img, (320, 240)) 
         try:
-            results = self.pose.process(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+            results = self.pose.process(cv2.cvtColor(img_small, cv2.COLOR_BGR2RGB))
             if results.pose_landmarks:
                 # Desenhar esqueleto (removendo pontos do rosto > 10)
                 conexoes_corpo = [c for c in mp_pose.POSE_CONNECTIONS if c[0] > 10 and c[1] > 10]
