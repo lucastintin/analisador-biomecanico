@@ -92,7 +92,9 @@ elif modo == "Câmera ao Vivo (Beta)":
         video_processor_factory=PoseProcessor,
         rtc_configuration={ # Configuração para funcionar em redes móveis (STUN)
             "iceServers": [{"urls": ["stun:://google.com"]}]
-        }
+        },
+        media_stream_constraints={"video": True, "audio": False},
+        async_processing=True,
     )
 
 st.sidebar.markdown("---")
